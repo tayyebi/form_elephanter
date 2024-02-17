@@ -1,0 +1,63 @@
+* {
+    font-family: 'Sahel', sans-serif;
+    background-color: #f9f9f9;
+    padding: 10;
+    font-size: 16px;
+}
+
+body {
+    width: 400px;
+    padding: 10px;
+    color: rgb(0, 0, 104);
+}
+
+/* Style the heading elements */
+h1
+{
+    background: rgb(0, 0, 104);
+    color: #f9f9f9;
+    text-align: center;
+    margin: 0;
+}
+
+/* Style the input fields */
+input[type="text"] {
+    display: inline-block;
+    padding: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    border: 1px solid;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom-color: rgb(0, 0, 104);
+}
+#valueInput {
+    width: 100%;
+}
+
+/* Style the button */
+button,
+a {
+    margin: 5px;
+    background-color: #ccff00;
+    background-color: #ffee00;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/* Style the list */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* Style the footer */
+footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #888;
+}

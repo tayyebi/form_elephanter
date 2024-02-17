@@ -1,43 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const addWebsiteButton = document.getElementById("addWebsite");
-  addWebsiteButton.addEventListener("click", function () {
-    const websiteUrl = document.getElementById("website").value;
-    // Save website URL to storage (chrome.storage or browser.storage)
-    // You can also add other form data here
-  });
 
   const keyInput = document.getElementById("keyInput");
   const valueInput = document.getElementById("valueInput");
   const addButton = document.getElementById("addButton");
-  const getFromFormButton = document.getElementById("getFromFormButton");
   const list = document.getElementById("list");
-
-
-  // document.getElementsByTagName("form")[0].addEventListener("submit", function (event) {
-  //   event.preventDefault(); // Prevent the default form submission behavior
-  //   const formData = new FormData(event.target); // Get form data
-  //   // Iterate through form data entries
-  //   for (const [key, value] of formData.entries()) {
-  //     insertPair(key, value);
-  //   }
-  //   displayPairs();
-  // });
-
-
-  getFromFormButton.addEventListener("click", function () {
-    var inputs = document.getElementsByTagName("input");
-    inputs = [...inputs, ...document.getElementsByTagName("textarea")];
-    for (var i = 0; i < inputs.length; i++) {
-      console.log(inputs[i]);
-      inputElement = inputs[i];
-      inputName = inputElement.getAttribute("name");
-      inputId = inputElement.getAttribute("id");
-
-      if (typeof inputName !== "undefined" && typeof inputId !== "undefined")
-        insertPair(inputName || "#" + inputId, inputElement.value);
-    }
-    displayPairs();
-  });
 
   addButton.addEventListener("click", function () {
     const key = keyInput.value;
@@ -50,13 +16,51 @@ document.addEventListener("DOMContentLoaded", function () {
     chrome.storage.local.get("pairs", function (result) {
       const pairs = result.pairs || {};
       list.innerHTML = "";
+
       for (const key in pairs) {
         const listItem = document.createElement("li");
-        listItem.textContent = `${key}: ${pairs[key]}`;
+
+        // Create a remove button for each pair
+        const removeButton = document.createElement("button");
+        removeButton.textContent = "حذف";
+        removeButton.addEventListener("click", function () {
+          // Remove the key-value pair from storage
+          delete pairs[key];
+          chrome.storage.local.set({ pairs });
+          displayPairs(); // Refresh the list
+        });
+
+        // Create a track button for each pair
+        const trackButton = document.createElement("button");
+        trackButton.textContent = "رهگیری";
+        trackButton.addEventListener("click", function () {
+          const value = pairs[key]; // Retrieve the value associated with the key
+          // Open the tracking website with the value as a query parameter
+          const trackingUrl = `https://tracking.post.ir/`;
+          window.open(trackingUrl, "_blank");
+
+          // Optionally, insert the value into the text box (if the tracking website has one)
+          const trackingCodeInput = getElementByXpath("//html[1]/body[1]/div[1]");
+          if (trackingCodeInput) {
+            trackingCodeInput.value = value;
+            trackingCodeInput.form.submit();
+          }
+        });
+
+        listItem.appendChild(removeButton);
+        listItem.appendChild(trackButton);
+        const textCnt = document.createElement("span");
+        textCnt.textContent = `${key}`;
+        listItem.appendChild(textCnt);
         list.appendChild(listItem);
       }
     });
   }
+
+  function getElementByXpath(xpath) {
+    return document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+  }
+
 
   function insertPair(key, value) {
     // Save key-value pair to storage
