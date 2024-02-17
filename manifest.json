@@ -1,0 +1,26 @@
+{
+    "manifest_version": 3,
+    "name": "Form Elephanter (Fill your forms easily and rapidly)",
+    "version": "1.0",
+    "permissions": ["activeTab", "storage"],
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["content.js"],
+        "run_at": "document_start"
+      }
+    ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+        "16": "icon16.png",
+        "48": "icon48.png",
+        "128": "icon128.png",
+        "1024": "icon1024.png"
+      }
+    }
+  }
+  
