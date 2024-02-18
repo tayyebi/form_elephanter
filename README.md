@@ -1,6 +1,17 @@
-Sure, I can help you with that. Here is a possible README.md file for your GitHub repository:
 
-# 📦 Form Elephanter 🐘
+
+📦 برای کسایی که از سایت رهگیری مرسولات پستی خسته‌ان و می‌خوان لیست مرسولات پستی رو داخل مرورگر ذخیره کن، یه «فیل» کننده‌ی فرم ساختیم.
+
+
+↘️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️↙️
+
+➡️   [Download  کلیک، دانلود کنید](https://github.com/tayyebi/form_elephanter/raw/main/form_elephanter-main.crx)    ⬅️
+
+↗️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️↖️
+
+
+
+# Form Elephanter 🐘
 
 A simple and convenient extension that helps you track your packets sent using delivery company.
 
